@@ -1,10 +1,10 @@
 <?php
-require_once 'includes/config.php';
+require_once __DIR__ . '/includes/config.php';
 
 $langs = [
-    'en' => require 'lang/en.php',
-    'ru' => require 'lang/ru.php',
-    'he' => require 'lang/he.php',
+    'en' => require __DIR__ . '/lang/en.php',
+    'ru' => require __DIR__ . '/lang/ru.php',
+    'he' => require __DIR__ . '/lang/he.php',
 ];
 ?>
 <!DOCTYPE html>
@@ -110,15 +110,15 @@ $langs = [
 </div>
 
 <!-- jQuery -->
-<script src="assets/js/jquery.min.js?v=<?= filemtime('assets/js/jquery.min.js') ?>"></script>
+<script src="assets/js/jquery.min.js?v=<?= filemtime(__DIR__ . '/assets/js/jquery.min.js') ?>"></script>
 <!-- Bootstrap Bundle (Popper included) -->
-<script src="assets/js/bootstrap.bundle.min.js?v=<?= filemtime('assets/js/bootstrap.bundle.min.js') ?>"></script>
+<script src="assets/js/bootstrap.bundle.min.js?v=<?= filemtime(__DIR__ . '/assets/js/bootstrap.bundle.min.js') ?>"></script>
 <!-- Translations from PHP lang files -->
 <script>
 const T = <?= json_encode($langs, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>;
 </script>
 <!-- App logic -->
-<script src="assets/js/app.js?v=<?= filemtime('assets/js/app.js') ?>"></script>
+<script src="assets/js/app.js?v=<?= filemtime(__DIR__ . '/assets/js/app.js') ?>"></script>
 
 <script>
     // Swap Bootstrap CSS for RTL when Hebrew is selected
