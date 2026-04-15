@@ -80,12 +80,7 @@ $langs = [
     <!-- Start-time panel -->
     <div class="start-time-panel" id="startTimePanel">
         <label id="startTimeLabel">Shift start time</label>
-        <div class="time-select-row">
-            <select id="shiftStartHour" class="time-select"></select>
-            <span class="time-sep-select">:</span>
-            <select id="shiftStartMinute" class="time-select"></select>
-        </div>
-        <input type="hidden" id="shiftStartInput">
+        <input type="time" id="shiftStartInput">
         <div class="elapsed-info" id="elapsedInfo"></div>
     </div>
 

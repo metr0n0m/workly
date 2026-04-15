@@ -100,27 +100,6 @@ function updateDisplay() {
     }
 }
 
-/* ---------- Custom time selects ---------- */
-function initTimeSelects() {
-    const $h = $('#shiftStartHour');
-    const $m = $('#shiftStartMinute');
-    for (let i = 0; i < 24; i++) $h.append(`<option value="${pad(i)}">${pad(i)}</option>`);
-    for (let i = 0; i < 60; i++) $m.append(`<option value="${pad(i)}">${pad(i)}</option>`);
-}
-
-function setSelectsToNow() {
-    const now = new Date();
-    $('#shiftStartHour').val(pad(now.getHours()));
-    $('#shiftStartMinute').val(pad(now.getMinutes()));
-    updateShiftStartInput();
-}
-
-function updateShiftStartInput() {
-    const h = $('#shiftStartHour').val();
-    const m = $('#shiftStartMinute').val();
-    $('#shiftStartInput').val(`${h}:${m}`);
-}
-
 /* ---------- Elapsed time helpers ---------- */
 function getElapsedSeconds() {
     const val = $('#shiftStartInput').val();
@@ -266,19 +245,14 @@ $('#hoursInput, #minutesInput').on('input', function () {
 $('#startTimeToggle').on('click', function () {
     $(this).toggleClass('open');
     $('#startTimePanel').toggleClass('visible');
-    if ($('#startTimePanel').hasClass('visible')) {
-        setSelectsToNow();
-        refreshElapsedText();
-        recalcDisplay();
-    } else {
+    if (!$('#startTimePanel').hasClass('visible')) {
         $('#shiftStartInput').val('');
         $('#elapsedInfo').removeClass('visible').text('');
         recalcDisplay();
     }
 });
 
-$('#shiftStartHour, #shiftStartMinute').on('change', function () {
-    updateShiftStartInput();
+$('#shiftStartInput').on('change input', function () {
     refreshElapsedText();
     recalcDisplay();
 });
@@ -291,7 +265,6 @@ $('.lang-btn').on('click', function () {
 $(function () {
     remaining    = 9 * 3600;
     totalSeconds = remaining;
-    initTimeSelects();
     applyLang(lang);
     updateDisplay();
     $(`.shift-btn[data-hours="9"]`).addClass('active');
