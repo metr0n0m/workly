@@ -2,7 +2,7 @@
    Workly – Service Worker
    ========================================= */
 
-const CACHE_NAME = 'workly-v3';
+const CACHE_NAME = 'workly-v4';
 
 const ASSETS = [
     '/',

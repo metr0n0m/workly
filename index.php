@@ -29,7 +29,7 @@ $langs = [
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="assets/css/all.min.css">
     <!-- App styles -->
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/app.css?v=<?= filemtime(__DIR__ . '/assets/css/app.css') ?>">
 </head>
 <body>
 
