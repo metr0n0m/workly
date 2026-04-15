@@ -1,0 +1,309 @@
+/* =========================================
+   Workly – Work Timer  |  app.css
+   ========================================= */
+
+:root {
+    --primary:      #1a73e8;
+    --primary-dark: #1558b0;
+    --danger:       #d93025;
+    --success:      #1e8e3e;
+    --warning:      #f29900;
+    --bg:           #f0f4f8;
+    --card-bg:      #ffffff;
+    --text-main:    #202124;
+    --text-muted:   #70757a;
+    --border:       #dadce0;
+    --radius-card:  24px;
+    --radius-btn:   14px;
+    --radius-input: 12px;
+    --shadow:       0 8px 32px rgba(0,0,0,0.10);
+}
+
+/* ---- Base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 16px;
+}
+
+/* ---- Card ---- */
+.app-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow);
+    padding: 2rem 1.75rem 1.75rem;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    text-align: center;
+}
+
+/* ---- Language switcher ---- */
+.lang-switcher {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    gap: 4px;
+}
+html[dir="rtl"] .lang-switcher { right: auto; left: 14px; }
+
+.lang-btn {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all .18s;
+    line-height: 1.5;
+}
+.lang-btn:hover  { border-color: var(--primary); color: var(--primary); }
+.lang-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+/* ---- Title ---- */
+.app-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 1.5rem;
+    letter-spacing: .01em;
+}
+.app-title i { color: var(--primary); margin-right: 6px; }
+html[dir="rtl"] .app-title i { margin-right: 0; margin-left: 6px; }
+
+/* ---- Shift presets ---- */
+.shift-presets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+}
+
+.shift-btn {
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all .18s;
+}
+.shift-btn:hover  { border-color: var(--primary); color: var(--primary); }
+.shift-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+/* ---- Duration input row ---- */
+.duration-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    direction: ltr;
+}
+
+.time-input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.time-input-group input {
+    width: 88px;
+    height: 68px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-input);
+    outline: none;
+    color: var(--text-main);
+    transition: border-color .18s;
+    -moz-appearance: textfield;
+}
+.time-input-group input::-webkit-outer-spin-button,
+.time-input-group input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.time-input-group input:focus { border-color: var(--primary); }
+
+.time-input-group label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+.time-sep {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--border);
+    line-height: 1;
+    padding-bottom: 22px;
+}
+
+/* ---- Start time toggle ---- */
+.start-time-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    margin-bottom: 0.75rem;
+    user-select: none;
+}
+.start-time-toggle:hover { color: var(--primary); }
+.start-time-toggle i { font-size: 0.8rem; transition: transform .2s; }
+.start-time-toggle.open i.toggle-arrow { transform: rotate(180deg); }
+
+.start-time-panel {
+    display: none;
+    background: #f8f9ff;
+    border: 1.5px solid #e3eaff;
+    border-radius: var(--radius-input);
+    padding: 14px 16px;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+html[dir="rtl"] .start-time-panel { text-align: right; }
+.start-time-panel.visible { display: block; }
+
+.start-time-panel label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    display: block;
+    margin-bottom: 6px;
+}
+.start-time-panel input[type="time"] {
+    width: 100%;
+    height: 44px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-input);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color .18s;
+}
+.start-time-panel input[type="time"]:focus { border-color: var(--primary); }
+
+.elapsed-info {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--warning);
+    font-weight: 600;
+    display: none;
+    text-align: center;
+}
+.elapsed-info.visible { display: block; }
+
+/* ---- Status badge ---- */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: all .25s;
+}
+.status-ready   { background: #f1f3f4; color: var(--text-muted); }
+.status-running { background: #e6f4ea; color: var(--success); }
+.status-paused  { background: #fef7e0; color: var(--warning); }
+.status-done    { background: #fce8e6; color: var(--danger); }
+
+/* ---- Timer display ---- */
+.timer-display {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -3px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    margin: 0.5rem 0 0.75rem;
+    transition: color .3s;
+}
+.timer-display.warning { color: var(--warning); }
+.timer-display.danger  { color: var(--danger);  }
+
+/* ---- Progress bar ---- */
+.progress-wrap {
+    height: 6px;
+    background: #e8eaed;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+.progress-bar-inner {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 10px;
+    width: 100%;
+    transition: width 1s linear, background-color .5s;
+}
+.progress-bar-inner.warning { background: var(--warning); }
+.progress-bar-inner.danger  { background: var(--danger); }
+
+/* ---- Action buttons ---- */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    flex: 1;
+    height: 58px;
+    border: none;
+    border-radius: var(--radius-btn);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform .12s, opacity .18s;
+}
+.btn-action:active { transform: scale(0.96); }
+
+.btn-start  { background: var(--primary); color: #fff; }
+.btn-start:hover  { background: var(--primary-dark); }
+.btn-pause  { background: var(--danger); color: #fff; }
+.btn-pause:hover  { opacity: .88; }
+.btn-reset  { background: #f1f3f4; color: var(--text-main); }
+.btn-reset:hover  { background: #e2e5e9; }
+
+/* ---- Footer ---- */
+.app-footer {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: #bdc1c6;
+    direction: ltr;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+    .app-card { padding: 1.5rem 1.1rem; box-shadow: none; border: 1px solid var(--border); }
+    .timer-display { font-size: 3.8rem; letter-spacing: -2px; }
+    .time-input-group input { width: 78px; height: 60px; font-size: 1.9rem; }
+}
