@@ -2,12 +2,14 @@
     "name": "Workly – Work Timer",
     "short_name": "Workly",
     "description": "Shift countdown timer for workers",
-    "start_url": "/",
+    "start_url": "https://workly.adalex.org/",
+    "scope": "https://workly.adalex.org/",
     "display": "standalone",
     "background_color": "#f0f4f8",
     "theme_color": "#1a73e8",
     "orientation": "portrait-primary",
     "lang": "en",
+    "categories": ["productivity", "utilities"],
     "icons": [
         {
             "src": "assets/icons/icon-192.png",
