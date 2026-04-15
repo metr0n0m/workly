@@ -38,7 +38,7 @@ body {
     background: var(--card-bg);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow);
-    padding: 2rem 1.75rem 1.75rem;
+    padding: 1.25rem 1.75rem 1.75rem;
     width: 100%;
     max-width: 480px;
     position: relative;
@@ -47,13 +47,12 @@ body {
 
 /* ---- Language switcher ---- */
 .lang-switcher {
-    position: absolute;
-    top: 14px;
-    right: 14px;
     display: flex;
     gap: 4px;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
 }
-html[dir="rtl"] .lang-switcher { right: auto; left: 14px; }
+html[dir="rtl"] .lang-switcher { justify-content: flex-start; }
 
 .lang-btn {
     font-size: 0.72rem;
@@ -191,8 +190,19 @@ html[dir="rtl"] .start-time-panel { text-align: right; }
     display: block;
     margin-bottom: 6px;
 }
-.start-time-panel input[type="time"] {
-    width: 100%;
+.time-select-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+.time-sep-select {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+.time-select {
+    width: 84px;
     height: 44px;
     border: 1.5px solid var(--border);
     border-radius: var(--radius-input);
@@ -200,10 +210,14 @@ html[dir="rtl"] .start-time-panel { text-align: right; }
     font-weight: 600;
     text-align: center;
     color: var(--text-main);
+    background: #fff;
     outline: none;
     transition: border-color .18s;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
 }
-.start-time-panel input[type="time"]:focus { border-color: var(--primary); }
+.time-select:focus { border-color: var(--primary); }
 
 .elapsed-info {
     margin-top: 8px;
