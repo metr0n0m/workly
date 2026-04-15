@@ -5,6 +5,7 @@ require_once __DIR__ . '/includes/config.php';
 $langs = [
     'en' => require __DIR__ . '/lang/en.php',
     'ru' => require __DIR__ . '/lang/ru.php',
+    'uk' => require __DIR__ . '/lang/uk.php',
     'he' => require __DIR__ . '/lang/he.php',
     'ar' => require __DIR__ . '/lang/ar.php',
     'id' => require __DIR__ . '/lang/id.php',
@@ -15,11 +16,23 @@ $langs = [
     'de' => require __DIR__ . '/lang/de.php',
     'fr' => require __DIR__ . '/lang/fr.php',
     'es' => require __DIR__ . '/lang/es.php',
+    'it' => require __DIR__ . '/lang/it.php',
+    'pl' => require __DIR__ . '/lang/pl.php',
+    'hi' => require __DIR__ . '/lang/hi.php',
+    'el' => require __DIR__ . '/lang/el.php',
+    'sr' => require __DIR__ . '/lang/sr.php',
+    'sl' => require __DIR__ . '/lang/sl.php',
+    'sk' => require __DIR__ . '/lang/sk.php',
+    'kk' => require __DIR__ . '/lang/kk.php',
+    'uz' => require __DIR__ . '/lang/uz.php',
+    'az' => require __DIR__ . '/lang/az.php',
+    'hy' => require __DIR__ . '/lang/hy.php',
 ];
 
 $langNames = [
     'en' => 'English',
     'ru' => 'Русский',
+    'uk' => 'Українська',
     'he' => 'עברית',
     'ar' => 'العربية',
     'id' => 'Bahasa Indonesia',
@@ -30,6 +43,17 @@ $langNames = [
     'de' => 'Deutsch',
     'fr' => 'Français',
     'es' => 'Español',
+    'it' => 'Italiano',
+    'pl' => 'Polski',
+    'hi' => 'हिन्दी',
+    'el' => 'Ελληνικά',
+    'sr' => 'Српски',
+    'sl' => 'Slovenščina',
+    'sk' => 'Slovenčina',
+    'kk' => 'Қазақша',
+    'uz' => "O'zbekcha",
+    'az' => 'Azərbaycanca',
+    'hy' => 'Հայերեն',
 ];
 ?>
 <!DOCTYPE html>
@@ -63,7 +87,7 @@ $langNames = [
     <div class="lang-switcher">
         <select id="langSelect" class="lang-select">
             <?php foreach ($langNames as $code => $name): ?>
-            <option value="<?= $code ?>"><?= strtoupper($code) ?> · <?= htmlspecialchars($name) ?></option>
+            <option value="<?= $code ?>"><?= strtoupper($code) ?> · <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?></option>
             <?php endforeach; ?>
         </select>
     </div>
