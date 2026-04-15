@@ -6,6 +6,30 @@ $langs = [
     'en' => require __DIR__ . '/lang/en.php',
     'ru' => require __DIR__ . '/lang/ru.php',
     'he' => require __DIR__ . '/lang/he.php',
+    'ar' => require __DIR__ . '/lang/ar.php',
+    'id' => require __DIR__ . '/lang/id.php',
+    'vi' => require __DIR__ . '/lang/vi.php',
+    'tr' => require __DIR__ . '/lang/tr.php',
+    'tl' => require __DIR__ . '/lang/tl.php',
+    'th' => require __DIR__ . '/lang/th.php',
+    'de' => require __DIR__ . '/lang/de.php',
+    'fr' => require __DIR__ . '/lang/fr.php',
+    'es' => require __DIR__ . '/lang/es.php',
+];
+
+$langNames = [
+    'en' => 'English',
+    'ru' => 'Русский',
+    'he' => 'עברית',
+    'ar' => 'العربية',
+    'id' => 'Bahasa Indonesia',
+    'vi' => 'Tiếng Việt',
+    'tr' => 'Türkçe',
+    'tl' => 'Filipino',
+    'th' => 'ภาษาไทย',
+    'de' => 'Deutsch',
+    'fr' => 'Français',
+    'es' => 'Español',
 ];
 ?>
 <!DOCTYPE html>
@@ -24,7 +48,7 @@ $langs = [
 
     <title><?= APP_NAME ?></title>
 
-    <!-- Bootstrap 5 LTR (swapped to RTL via JS when Hebrew selected) -->
+    <!-- Bootstrap 5 LTR (swapped to RTL via JS when RTL language selected) -->
     <link id="bootstrapCss" rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="assets/css/all.min.css">
@@ -37,14 +61,16 @@ $langs = [
 
     <!-- Language switcher -->
     <div class="lang-switcher">
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="ru">RU</button>
-        <button class="lang-btn" data-lang="he">HE</button>
+        <select id="langSelect" class="lang-select">
+            <?php foreach ($langNames as $code => $name): ?>
+            <option value="<?= $code ?>"><?= strtoupper($code) ?> · <?= htmlspecialchars($name) ?></option>
+            <?php endforeach; ?>
+        </select>
     </div>
 
     <!-- Title -->
     <h1 class="app-title" id="appTitle">
-        <i class="fa-solid fa-clock"></i> Work Timer
+        <i class="fa-solid fa-clock"></i> Shift Timer
     </h1>
 
     <!-- Shift quick-select buttons -->
@@ -73,20 +99,20 @@ $langs = [
     <!-- Start-time panel toggle -->
     <div class="start-time-toggle" id="startTimeToggle">
         <i class="fa-solid fa-circle-exclamation"></i>
-        <span id="startTimeToggleText">Shift started earlier?</span>
+        <span id="startTimeToggleText">Started earlier?</span>
         <i class="fa-solid fa-chevron-down toggle-arrow"></i>
     </div>
 
     <!-- Start-time panel -->
     <div class="start-time-panel" id="startTimePanel">
-        <label id="startTimeLabel">Shift start time</label>
+        <label id="startTimeLabel">Shift started at</label>
         <input type="time" id="shiftStartInput">
         <div class="elapsed-info" id="elapsedInfo"></div>
     </div>
 
     <!-- Status badge -->
     <div class="status-badge status-ready" id="statusBadge">
-        <i class="fa-solid fa-circle-check"></i> Ready to work
+        <i class="fa-solid fa-circle-check"></i> Ready
     </div>
 
     <!-- Timer display -->
@@ -122,13 +148,13 @@ const T = <?= json_encode($langs, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
 <script src="assets/js/app.js?v=<?= filemtime(__DIR__ . '/assets/js/app.js') ?>"></script>
 
 <script>
-    // Swap Bootstrap CSS for RTL when Hebrew is selected
-    $(document).on('click', '.lang-btn', function () {
-        const l = $(this).data('lang');
-        const href = l === 'he'
-            ? 'assets/css/bootstrap.rtl.min.css'
-            : 'assets/css/bootstrap.min.css';
-        $('#bootstrapCss').attr('href', href);
+    // Swap Bootstrap CSS for RTL languages
+    $(document).on('change', '#langSelect', function () {
+        const l = $(this).val();
+        const isRtl = l === 'he' || l === 'ar';
+        $('#bootstrapCss').attr('href',
+            isRtl ? 'assets/css/bootstrap.rtl.min.css' : 'assets/css/bootstrap.min.css'
+        );
     });
 
     // Service Worker registration (PWA)

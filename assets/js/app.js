@@ -53,8 +53,7 @@ function applyLang(l) {
     $('#startTimeToggleText').text(t.start_time_toggle);
     $('#startTimeLabel').text(t.start_time_label);
     $('#resetBtn').html(`<i class="fa-solid fa-rotate-left"></i> ${t.reset}`);
-    $('.lang-btn').removeClass('active');
-    $(`.lang-btn[data-lang="${l}"]`).addClass('active');
+    $('#langSelect').val(l);
     saveLang(l);
     refreshElapsedText();  // перерисовать строку с текущим языком
     updateStartBtn();
@@ -257,8 +256,8 @@ $('#shiftStartInput').on('change input', function () {
     recalcDisplay();
 });
 
-$('.lang-btn').on('click', function () {
-    applyLang($(this).data('lang'));
+$('#langSelect').on('change', function () {
+    applyLang($(this).val());
 });
 
 /* ---------- Init ---------- */

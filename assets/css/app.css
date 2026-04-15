@@ -48,26 +48,23 @@ body {
 /* ---- Language switcher ---- */
 .lang-switcher {
     display: flex;
-    gap: 4px;
     justify-content: flex-end;
     margin-bottom: 0.5rem;
 }
 html[dir="rtl"] .lang-switcher { justify-content: flex-start; }
 
-.lang-btn {
+.lang-select {
     font-size: 0.72rem;
     font-weight: 600;
-    padding: 3px 9px;
+    padding: 4px 10px;
     border-radius: 8px;
-    border: 1.5px solid var(--border);
-    background: #fff;
-    color: var(--text-muted);
+    border: 1.5px solid var(--primary);
+    background: var(--card-bg);
+    color: var(--primary);
     cursor: pointer;
-    transition: all .18s;
-    line-height: 1.5;
+    outline: none;
+    max-width: 160px;
 }
-.lang-btn:hover  { border-color: var(--primary); color: var(--primary); }
-.lang-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
 /* ---- Title ---- */
 .app-title {
